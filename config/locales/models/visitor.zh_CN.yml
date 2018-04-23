@@ -1,0 +1,18 @@
+zh-CN:
+  activerecord:
+    models:
+      visitor: 用户
+    attributes:
+      visitor:
+        id: 编号
+        uid: 用户编码
+        email: 邮箱
+        nick_name: 昵称
+        gender: 性别
+        city: 城市
+        province: 省份
+        country: 区县
+        avatar_url: 头像
+        token: 登录令牌
+        created_at: 创建时间
+        updated_at: 修改时间

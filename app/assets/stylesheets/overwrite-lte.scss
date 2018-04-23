@@ -1,0 +1,157 @@
+/** 重写 AdminLTE 样式 **/
+body {
+  min-width: 320px;
+}
+
+.main-header {
+  .navbar-custom-menu > ul.navbar-nav > li {
+    &.open {
+      position:relative;
+      ul.dropdown-menu {
+        right: 0;
+      }
+    }
+    &:last-child {
+      padding-right: 20px;
+    }
+    &.course-menu, &.attention-menu, &.partner-menu, &.user-menu {
+      a.dropdown-toggle {
+        height: 50px;
+        .user-image {
+          margin-right: unset;
+        }
+      }
+      .dropdown-menu {
+        background-color: #f4f4f4;
+        width: unset;
+        min-width: 120px;
+        max-width: 320px;
+        border: 1px solid #ddd;
+        text-align: center;
+        li {
+          & .nav-header-current-user {
+            margin: 0 5px;
+            overflow: hidden;
+            line-height: 30px;
+            color: #777;
+          }
+          a {
+            color: #777;
+            padding: 5px 0px;
+            &:hover {
+              background: #307AAE;
+              color: #fff;
+            }
+          }
+          .btn {
+            border: unset;
+          }
+          &.dropdown-divider {
+            height: 1px;
+            margin: 4px;
+            background-color: #e1e4e8;
+          }
+        }
+      }
+    }
+  }
+}
+
+.main-sidebar {
+  .sidebar {
+    .sidebar-menu {
+      li {
+        & > a:hover {
+          background: #A1D0EF;
+        }
+        &.active {
+          border-radius: 1px;
+          & > a {
+            background: #67B9EF;
+          }
+        }
+        & > .treeview-menu {
+          li > a {
+            text-align: center;
+            padding: 5px;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media(min-width: 768px) {
+  .main-header {
+    a.logo {
+      width: 150px;
+    }
+    .navbar-static-top {
+      margin-left: 150px;
+    }
+  }
+  .main-sidebar {
+    width: 150px;
+  }
+  .content-wrapper, .main-footer {
+    margin-left: 150px;
+  }
+}
+
+@media(max-width: 991px) {
+  .content-header {
+    display: flex;
+    ol.breadcrumb {
+      flex: 1;
+      text-align: right;
+      vertical-align: bottom;
+      padding: 4px 5px;
+      margin-top: unset;
+      background: unset;
+    }
+  }
+}
+
+@media(max-width: 767px) {
+  .main-header .navbar-custom-menu .dropdown{
+    .navbar-title {
+      display: none;
+    }
+  }
+  .main-sidebar {
+    width: 150px;
+  }
+  .sidebar-open .content-wrapper, .sidebar-open .main-footer {
+    transform: translate(150px, 0);
+  }
+}
+
+.main-footer {
+  padding: 10px 15px;
+}
+
+.box {
+  border-top: 1px solid #f4f4f4 !important;
+  .table-bordered {
+    border: 1px solid #ddd;
+  }
+  .box-footer.clearfix {
+    padding: 5px;
+    text-align: right;
+  }
+}
+
+.input-group .input-group-addon {
+  background-color: #eee;
+}
+
+dl {
+  margin-bottom: 0px;
+}
+
+/** 重写 bootstrap 样式 **/
+.input-group[class*="col-"] {
+  padding-left: 15px;
+  padding-right: 15px;
+}

@@ -1,0 +1,41 @@
+<section class="content-header">
+  <h1>管理员列表</h1>
+  <div class="tools">
+    <%= link_to "新建管理员", new_user_path, class: 'btn btn-sm btn-primary pull-right' %>
+  </div>
+</section>
+
+<section class="content container-fluid">
+  <table class="table table-bordered table-condensed table-striped">
+    <thead align="center">
+      <tr>
+        <th>编号</th>
+        <th>账号</th>
+        <th>姓名</th>
+        <th>头像</th>
+        <th>邮箱</th>
+        <th>登录次数</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.uname %></td>
+        <td><%= user.name %></td>
+        <td><%= image_tag user.avatar.url(:thumb), size: '18x18' %></td>
+        <td><%= user.email %></td>
+        <td><%= user.sign_in_count %></td>
+        <td>
+          <%= link_to '详情', user %>
+          <%= link_to "编辑", edit_user_path(user) %>
+          <% unless user.email == Rails.application.secrets.admin_email %>
+          <%= link_to "删除", user, method: :delete, data: { confirm: '确认删除?' } %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

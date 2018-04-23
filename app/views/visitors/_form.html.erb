@@ -1,0 +1,66 @@
+<%= form_with(model: visitor, local: true, class: 'form-horizontal') do |form| %>
+  <% flash[:errors] = visitor.errors.full_messages if visitor.errors.any? %>
+
+  <% unless visitor.new_record? %>
+  <div class="form-group">
+    <%= form.label :uid, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :uid, class: 'form-control', disabled: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :token, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :token, class: 'form-control', disabled: true %>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :email, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.email_field :email, class: 'form-control', placeholder: '请输入邮箱' %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :nick_name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :nick_name, class: 'form-control', placeholder: '请输入昵称' %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :gender, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10 radio-group">
+      <%= form.radio_button :gender, 'true', checked: visitor.gender, id: 'gender_true', class: 'flat-red' %>
+      <%= form.label :gender, '男', value: true, for: 'gender_true' %>
+      <%= form.radio_button :gender, 'false', checked: !visitor.gender, id: 'gender_false' %>
+      <%= form.label :gender, '女', value: false, for: 'gender_false' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :city, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10 input-group">
+      <div class="input-group-addon">省</div>
+      <%= form.email_field :province, class: 'form-control', placeholder: '省份' %>
+      <div class="input-group-addon">市</div>
+      <%= form.email_field :city, class: 'form-control', placeholder: '城市' %>
+      <div class="input-group-addon">县</div>
+      <%= form.email_field :country, class: 'form-control', placeholder: '区县' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :avatar_url, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.email_field :avatar_url, class: 'form-control', placeholder: '请填写 URL' %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-block btn-info' %>
+  </div>
+<% end %>

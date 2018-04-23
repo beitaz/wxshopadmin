@@ -1,0 +1,10 @@
+<section class="content-header">
+  <h1>新建管理员</h1>
+  <div class="tools">
+    <%= link_to "返回列表", users_path, class: 'btn btn-sm btn-default pull-right' %>
+  </div>
+</section>
+
+<section class="content container-fluid">
+  <%= render 'form', user: @user %>
+</section>

@@ -1,0 +1,19 @@
+zh-CN:
+  activerecord:
+    models:
+      advert: 广告
+    attributes:
+      advert:
+        id: 编号
+        title: 广告标题
+        pic_url: 图片链接
+        advert_url: 广告链接
+        promo_pic_url: 推广图片链接
+        promo_tips: 推广提示
+        promo_desc: 推广描述
+        type: 广告类型
+        sort: 显示顺序
+        status: 状态
+        isdeleted: 标记删除
+        created_at: 创建时间
+        updated_at: 修改时间

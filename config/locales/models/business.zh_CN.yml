@@ -1,0 +1,11 @@
+zh-CN:
+  activerecord:
+    models:
+      business: 公司信息
+    attributes:
+       business:
+        id: 编号
+        name: 公司名称
+        brand_name: 品牌名称
+        created_at: 创建时间
+        updated_at: 修改时间

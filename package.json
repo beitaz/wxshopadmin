@@ -1,0 +1,12 @@
+{
+  "name": "wxshopadmin",
+  "private": true,
+  "dependencies": {
+    "admin-lte": "^2.4.3",
+    "bootstrap": "^3.3.7",
+    "bootstrap3-wysihtml5-bower": "^0.3.3",
+    "font-awesome": "^4.7.0",
+    "ionicons": "^3.0.0",
+    "jquery": "^3.3.1"
+  }
+}

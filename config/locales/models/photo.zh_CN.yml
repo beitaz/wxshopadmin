@@ -1,0 +1,11 @@
+zh-CN:
+  activerecord:
+    models:
+      photo: 图片
+    attributes:
+       photo:
+        id: 编号
+        photo: 图片
+        thum_photo: 小图片
+        created_at: 创建时间
+        updated_at: 修改时间

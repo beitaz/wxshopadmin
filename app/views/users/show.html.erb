@@ -1,0 +1,38 @@
+<section class="content-header">
+  <h1>管理员详情</h1>
+  <div class="tools">
+    <%= link_to "编辑用户", edit_user_path, class: 'btn btn-sm btn-info pull-right' %>
+    <%= link_to "返回列表", users_path, class: 'btn btn-sm btn-default pull-right' %>
+  </div>
+</section>
+
+<section class="content container-fluid">
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">用户资料</h3>
+    </div>
+
+    <div class="box-body">
+      <dl class="dl-horizontal">
+        <dt>账号</dt>
+        <dd><%= @user.uname %></dd>
+        <dt>姓名</dt>
+        <dd><%= @user.name %></dd>
+        <dt>头像</dt>
+        <dd><%= image_tag @user.avatar.url, size: '18x18' %></dd>
+        <dt>邮箱</dt>
+        <dd><%= @user.email %></dd>
+        <dt>登录次数</dt>
+        <dd><%= @user.sign_in_count %></dd>
+        <dt>登录时间</dt>
+        <dd><%= local_time @user.current_sign_in_at %></dd>
+        <dt>登录地址</dt>
+        <dd><%= @user.current_sign_in_ip %></dd>
+        <dt>最后登录时间</dt>
+        <dd><%= local_time @user.last_sign_in_at %></dd>
+        <dt>最后登录地址</dt>
+        <dd><%= @user.last_sign_in_ip %></dd>
+      </dl>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+zh-CN:
+  activerecord:
+    models:
+      user: 管理员
+    attributes:
+      user:
+        id: 编号
+        uname: 账号
+        email: 邮箱
+        avatar: 头像
+        name: 姓名
+        password: 密码
+        password_confirmation: 确认密码
+        encrypted_password: 加密密码
+        reset_password_token: 密码重置 Token
+        reset_password_sent_at: 密码重置时间
+        remember_created_at: 免登陆时间
+        last_sign_in_at: 最后登录时间
+        last_sign_in_ip: 最后登录 IP
+        current_sign_in_at: 登录时间
+        current_sign_in_ip: 登录 IP
+        sign_in_count: 登录次数
+        created_at: 创建时间
+        updated_at: 修改时间

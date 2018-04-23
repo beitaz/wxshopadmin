@@ -1,0 +1,28 @@
+<section class="content-header">
+  <h1>用户详情</h1>
+  <div class="tools">
+    <%= link_to "编辑用户", edit_visitor_path, class: 'btn btn-sm btn-default pull-right' %>
+    <%= link_to "返回列表", visitors_path, class: 'btn btn-sm btn-default pull-right' %>
+  </div>
+</section>
+
+<section class="content container-fluid">
+  <div class="box box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">用户资料</h3>
+    </div>
+
+    <div class="box-body">
+      <dl class="dl-horizontal">
+        <dt>邮箱</dt>
+        <dd><%= @visitor.email %></dd>
+        <dt>昵称</dt>
+        <dd><%= @visitor.nick_name %></dd>
+        <dt>性别</dt>
+        <dd><%= @visitor.gender ? '男' : '女' %></dd>
+        <dt>地址</dt>
+        <dd><%= @visitor.province + @visitor.city + @visitor.country %></dd>
+      </dl>
+    </div>
+  </div>
+</section>

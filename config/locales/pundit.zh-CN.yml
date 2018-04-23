@@ -1,0 +1,22 @@
+zh-CN:
+  pundit:
+    default: '您没有访问权限。'
+    post_policy:
+      update?: 'You cannot edit this post!'
+      create?: 'You cannot create posts!'
+  errors:
+    messages:
+      in_between: "文件大小必须介于 %{min} 到 %{max} 之间"
+      spoofed_media_type: "扩展名与内容类型不符"
+  number:
+    human:
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "Byte"
+            other: "Bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"

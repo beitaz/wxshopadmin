@@ -1,0 +1,79 @@
+# inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'node_modules/**/*'
+    - 'bin/*'
+    - 'lib/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Layout/IndentationConsistency:
+  EnforcedStyle: rails
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'db/**/*'
+
+# Configuration parameters: MinNameLength (3), AllowNamesEndingInNumbers (true),
+#                           AllowedNames ([io, id, to]), ForbiddenNames ([])
+Naming/UncommunicativeMethodParamName:
+  MinNameLength: 1
+
+Security/Open:
+  Exclude:
+    - 'lib/**/*'
+
+Style/AsciiComments:
+  Enabled: false
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AutoCorrect, EnforcedStyle.
+# SupportedStyles: nested, compact
+Style/ClassAndModuleChildren:
+  Enabled: false
+  
+# Offense count: 5
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+# Offense count: 37
+# Cop supports --auto-correct.
+# Configuration parameters: EnforcedStyle.
+# SupportedStyles: when_needed, always, never
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# `EnforcedStyle: slashes(default), percent_r, mixed`
+# If `AllowInnerSlashes: false`, the cop will always recommend using `%r` if one or more
+# slashes are found in the regexp string
+Style/RegexpLiteral:
+  # EnforcedStyle: mixed
+  AllowInnerSlashes: true
+
+# foo.bar if foo  =>  foo&.bar
+# Configuration parameters: ConvertCodeThatCanStartToReturnNil (false)
+# Configuration parameters: Whitelist ([present?, blank?, presence, try])
+Style/SafeNavigation:
+  Enabled: false
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: MinSize.
+# SupportedStyles: percent, brackets
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+# Offense count: 22
+# Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
+# URISchemes: http, https
+Metrics/LineLength:
+  Max: 120

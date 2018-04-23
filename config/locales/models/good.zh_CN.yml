@@ -1,0 +1,37 @@
+zh-CN:
+  activerecord:
+    models:
+      good: 商品
+    attributes:
+       good:
+        id: 编号
+        brand_name: 品牌
+        code: 商品编码
+        detail_info: 商品详细
+        evaluate_count: 评估数
+        free_ship_num: 免运费数
+        freight: 运费
+        logo: 图标
+        market_price: 商城价
+        min_buy_num: 最少购买数
+        name: 名称
+        price: 价格
+        sale_count: 已售
+        share_amount: 分享合计
+        share_times: 分享次数
+        share_tips: 分享提示
+        source_flag: 'Source Flag'
+        start_time: 活动开始时间
+        status: 状态
+        stock_num: 库存
+        thum_logo: 大图标
+        valid_end_time: 活动截止时间
+        whole_num: 分享价次数
+        whole_price: 折扣价
+        discover: 发现好商品
+        recommend: 推荐商品
+        created_at: 创建时间
+        updated_at: 修改时间
+        business: 所属公司
+        photos: 图片
+        skus: 库存

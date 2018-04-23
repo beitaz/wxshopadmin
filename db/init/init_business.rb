@@ -1,0 +1,1 @@
+Business.create!(name: '广州素洁服饰公司', brand_name: '素洁')

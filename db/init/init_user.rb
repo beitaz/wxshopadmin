@@ -1,0 +1,2 @@
+User.create!(uname: 'admin', email: Rails.application.secrets.admin_email, password:  Rails.application.secrets.admin_password)
+User.create!(uname: 'xiao', email: 'xiao@example.com', password: '123abc..')
