@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     get 'profile', on: :member
   end
   resources :visitors
-  resources :goods
+  resources :goods do
+    get 'adverts', on: :collection
+    get 'discovers', on: :collection
+    get 'recommends', on: :collection
+  end
 
   namespace :api, defaults: { format: :json } do
     post :adverts, to: 'base#adverts'
