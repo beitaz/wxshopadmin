@@ -1,17 +1,112 @@
-<%= form_with(model: good, local: true) do |form| %>
-  <% if good.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(good.errors.count, "error") %> prohibited this good from being saved:</h2>
+<%= form_with(model: good, local: true, class: 'form-horizontal') do |form| %>
+  <% flash[:errors] = good.errors.full_messages if good.errors.any? %>
 
-      <ul>
-      <% good.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="form-group">
+    <%= form.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: 'form-control', placeholder: '请输入商品名称' %>
     </div>
-  <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :bussiness_id, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%#= form.select :bussiness_id, Business.all.collect { |b| [b.name, b.id] }, { include_blank: '请选择公司' }, class: 'form-control' %>
+      <%= form.select :bussiness_id, Business.all.collect { |b| [b.name, b.id] }, {}, class: 'form-control select2' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :brand_name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :brand_name, class: 'form-control', placeholder: '请输入品牌名称' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :code, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :code, class: 'form-control', placeholder: '请输入商品编码' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :price, class: 'form-control', placeholder: '请输入商品价格' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :price, class: 'form-control', placeholder: '请输入商品价格' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :price, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :price, class: 'form-control', placeholder: '请输入商品价格' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :price, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :price, class: 'form-control', placeholder: '请输入商品价格' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :price, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :price, class: 'form-control', placeholder: '请输入商品价格' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :price, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :price, class: 'form-control', placeholder: '请输入商品价格' %>
+    </div>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+
+<script>
+$(function(){
+  $('.select2').select2({
+    ajax: {
+      url: '/businesses',
+      method: 'GET',
+      delay: 1000,  // wait 250 milliseconds before triggering the request
+      dataType: 'json',
+      data: function (params) {
+        console.log('params = ', params);
+        // Query parameters will be ?search=[term]&page=[page]
+        return {
+          q: params.term,
+          p: params.page || 1
+        };
+      },
+      processResults: function (data, params) {
+        console.log('Ajax result = ', data);
+        params.page = params.page || 1;
+        return data;
+        /**
+        return {
+          results: data.results,
+          pagination: {
+            more: (params.page * 30) < data.total
+          }
+        };
+        **/
+      },
+      cache: true,
+      placeholder: '',
+      minimumInputLength: 1
+    }
+  });
+});
+</script>

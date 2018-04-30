@@ -43,11 +43,12 @@ gem 'bootstrap-wysihtml5-rails' # 富文本
 gem 'paperclip', '~> 6.0.0'
 gem 'paperclip-qiniu'
 # gem 'cancancan'
-gem 'devise'
+gem 'devise'  # 用户认证
 # gem 'draper'
-gem 'figaro'
+gem 'figaro'  # 全局配置
 gem 'faraday'
-gem 'pundit'
+gem 'pundit'  # 权限验证
+gem 'kaminari'  # 分页
 
 # 开发环境使用,为后期 omniAuth 准备 uid 字段
 gem 'uuidtools'

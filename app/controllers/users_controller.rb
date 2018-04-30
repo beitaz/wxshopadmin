@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   # GET /users/current_user_id
   # GET /users/current_user_id.json
   def profile
-    authorize User
-    @user == current_user.id
+    @user = current_user
+    authorize @user
   end
 
   # GET /users/new
@@ -37,14 +37,11 @@ class UsersController < ApplicationController
   def create
     authorize User
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: "用户 #{@user.uname} 创建成功." }
-        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end

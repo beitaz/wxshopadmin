@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :settings
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     passwords: 'users/passwords',
@@ -12,7 +13,9 @@ Rails.application.routes.draw do
   resources :users do
     get 'profile', on: :member
   end
+  resource :setting
   resources :visitors
+  resources :businesses
   resources :goods do
     get 'adverts', on: :collection
     get 'discovers', on: :collection

@@ -20,10 +20,11 @@
  */
 
 @import 'animate';
+@import 'select2/dist//css/select2';
 @import 'font-awesome/scss/font-awesome';
 @import 'ionicons/dist/scss/ionicons';
 @import 'bootstrap/dist/css/bootstrap';
 @import 'admin-lte/dist/css/AdminLTE';
 @import 'admin-lte/dist/css/skins/skin-blue-light';
-@import 'overwrite-lte';
+@import 'overwrite';
 @import 'custom';

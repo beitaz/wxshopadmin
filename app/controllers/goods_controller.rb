@@ -41,6 +41,7 @@ class GoodsController < ApplicationController
 
   # GET /goods/1/edit
   def edit
+    skip_authorization
   end
 
   # POST /goods
@@ -62,6 +63,7 @@ class GoodsController < ApplicationController
   # PATCH/PUT /goods/1
   # PATCH/PUT /goods/1.json
   def update
+    skip_authorization
     respond_to do |format|
       if @good.update(good_params)
         format.html { redirect_to @good, notice: 'Good was successfully updated.' }

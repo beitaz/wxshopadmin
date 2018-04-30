@@ -14,6 +14,10 @@
 //= require jquery/dist/jquery
 //= require bootstrap/dist/js/bootstrap
 //= require admin-lte/dist/js/adminlte
+//= require adminlte
+//= require select2/dist/js/select2
+// require select2/dist/js/select2.full
+//= require select2/dist/js/i18n/zh-CN
 //= require noty/jquery.noty
 //= require noty/bootstrap
 //= require noty/bottomRight

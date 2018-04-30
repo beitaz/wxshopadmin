@@ -27,3 +27,8 @@ $.noty.defaults = {
   },
   buttons: false // [boolean|array] an array of buttons, for creating confirmation dialogs.
 };
+
+
+// Overwrite Select2 default options
+// $.fn.select2.defaults.set("theme", "classic");  // set select2 theme
+// $.fn.select2.defaults.reset();  // reset select2 options

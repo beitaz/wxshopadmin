@@ -13,4 +13,5 @@ if Rails.env.development?
   require Rails.root.join('db', 'init', 'init_business.rb')
   require Rails.root.join('db', 'init', 'init_goods.rb')
   # require Rails.root.join('db', 'init', 'photo.rb')
+  # require Rails.root.join('db', 'init', 'init_system.rb')
 end

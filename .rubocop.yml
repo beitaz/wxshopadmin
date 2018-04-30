@@ -14,6 +14,9 @@ Bundler/OrderedGems:
 Layout/IndentationConsistency:
   EnforcedStyle: rails
 
+Metrics/AbcSize:
+  Max: 50
+
 Metrics/MethodLength:
   Max: 20
   Exclude:

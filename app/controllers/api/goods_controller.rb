@@ -4,7 +4,7 @@ class Api::GoodsController < Api::BaseController
 
   def adverts
     skip_authorization
-    goods = Good.adverts
+    goods = Good.where.not(adverts_id: nil)
     render json: goods
   end
 
@@ -18,6 +18,12 @@ class Api::GoodsController < Api::BaseController
   def recommends
     skip_authorization
     goods = Good.recommends
+    render json: goods
+  end
+
+  def goods
+    skip_authorization
+    goods = Good.all
     render json: goods
   end
 

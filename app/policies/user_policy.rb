@@ -16,7 +16,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def profile?
-    edit?
+    true
   end
 
   def edit?
