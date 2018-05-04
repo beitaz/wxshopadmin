@@ -27,3 +27,7 @@ public/fonts/*
 public/system/*
 !public/system/missing.png
 !public/system/paperclip_attachments.yml
+
+# Ignore database dump files
+db/dump/*
+!/db/dump/.keep
