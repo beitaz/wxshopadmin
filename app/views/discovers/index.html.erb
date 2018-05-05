@@ -1,0 +1,42 @@
+<section class="content-header">
+  <h1>好商品列表</h1>
+  <div class="tools">
+    <%= link_to "新建好商品", new_discover_path, class: 'btn btn-sm btn-primary pull-right' %>
+  </div>
+</section>
+
+<section class="content container-fluid">
+  <table class="table table-bordered table-condensed table-striped">
+    <thead align="center">
+      <tr>
+        <th>ID</th>
+        <th>编码</th>
+        <th>图标</th>
+        <th>品牌</th>
+        <th>品牌类型</th>
+        <th>年份季节</th>
+        <th>季节类型</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @discovers.each do |discover| %>
+      <tr>
+        <td><%= discover.id %></td>
+        <td><%= discover.code %></td>
+        <td><%= image_tag discover.logo, size: '40x40' %></td>
+        <td><%= discover.brand %></td>
+        <td><%= discover.brand_category %></td>
+        <td><%= discover.season %></td>
+        <td><%= discover.season_category %></td>
+        <td>
+          <%= link_to '详情', discover %>
+          <%= link_to '编辑', edit_discover_path(discover) %>
+          <%= link_to '删除', discover, method: :delete, data: { confirm: '确认删除?' } %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+

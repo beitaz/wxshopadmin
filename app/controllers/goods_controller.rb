@@ -8,30 +8,17 @@ class GoodsController < ApplicationController
     skip_authorization
   end
 
-  # GET /goods/adverts
-  # GET /goods/adverts.json
-  def adverts
-    @goods = Good.all
-    skip_authorization
-  end
-
-  # GET /goods/discovers
-  # GET /goods/discovers.json
-  def discovers
-    @goods = Good.discovers
-    skip_authorization
-  end
-
-  # GET /goods/recommends
-  # GET /goods/recommends.json
+  # GET /goods
+  # GET /goods.json
   def recommends
-    @goods = Good.recommends
     skip_authorization
+    @goods = Good.recommends
   end
 
   # GET /goods/1
   # GET /goods/1.json
   def show
+    skip_authorization
   end
 
   # GET /goods/new

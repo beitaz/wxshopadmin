@@ -1,0 +1,107 @@
+<%= form_with(model: advert, local: true, class: 'form-horizontal') do |form| %>
+  <% flash[:errors] = advert.errors.full_messages if advert.errors.any? %>
+
+  <div class="form-group">
+    <%= form.label :title, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :title, class: 'form-control', placeholder: '请输入广告标题' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :pic_url, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :pic_url, class: 'form-control', placeholder: '请输入广告图片' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :advert_url, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :advert_url, class: 'form-control', placeholder: '请输入广告地址' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :promo_pic_url, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :promo_pic_url, class: 'form-control', placeholder: '请输入推广图片' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :promo_tips, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :promo_tips, class: 'form-control', placeholder: '请输入推广提示' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :promo_desc, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :promo_desc, class: 'form-control', placeholder: '请输入推广描述' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :category, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :category, class: 'form-control', placeholder: '请输入广告类型' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :sort, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :sort, class: 'form-control', placeholder: '请输入显示顺序' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :status, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :status, class: 'form-control', placeholder: '请输入状态' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :present_amout, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :present_amout, class: 'form-control', placeholder: '请输入 present_amout' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :limit_fowards, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :limit_fowards, class: 'form-control', placeholder: '请输入 limit_fowards' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :limit_price, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :limit_price, class: 'form-control', placeholder: '请输入 limit_price' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :location, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :location, class: 'form-control', placeholder: '请输入 location' %>
+    </div>
+  </div>
+  
+  <% unless advert.new_record? %>
+  <div class="form-group">
+    <%= form.label :deleted, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :deleted, class: 'form-control', placeholder: '标记删除' %>
+    </div>
+  </div>
+  <% end %>
+  
+  <div class="actions">
+    <%= form.submit class: 'btn btn-block btn-info'%>
+  </div>
+<% end %>

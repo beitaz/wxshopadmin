@@ -55,6 +55,11 @@ Style/EmptyMethod:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+# Define custom global variables via the AllowedVariables option.
+Style/GlobalVars:
+  AllowedVariables:
+    - '$redis'
+
 # `EnforcedStyle: slashes(default), percent_r, mixed`
 # If `AllowInnerSlashes: false`, the cop will always recommend using `%r` if one or more
 # slashes are found in the regexp string

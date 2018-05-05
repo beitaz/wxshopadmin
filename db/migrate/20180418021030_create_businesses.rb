@@ -4,6 +4,7 @@ class CreateBusinesses < ActiveRecord::Migration[5.1]
     create_table :businesses do |t|
       t.string :name, default: '', comment: '公司名称'
       t.string :brand_name, default: '', comment: '品牌名称'
+      t.string :uid, default: '', comment: '公司条码'
 
       t.timestamps
     end

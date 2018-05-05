@@ -9,14 +9,14 @@
 #  promo_pic_url(推广图片) :string(255)      default("")
 #  promo_tips(推广提示)    :string(255)      default("")
 #  promo_desc(推广描述)    :string(255)      default("")
-#  type(广告类型)          :integer          default(0)
+#  category(广告类型)      :integer          default(0)
 #  sort(显示顺序)          :integer          default(0)
 #  status(状态)          :integer          default(0)
 #  present_amout       :integer          default(0)
 #  limit_fowards       :integer          default(0)
 #  limit_price         :integer          default(0)
-#  location_flag       :integer          default(0)
-#  isdeleted(标记删除)     :boolean          default(FALSE)
+#  location            :integer          default(0)
+#  deleted(标记删除)       :boolean          default(FALSE)
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #

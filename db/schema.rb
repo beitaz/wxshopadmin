@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180421024032) do
+ActiveRecord::Schema.define(version: 20180504131701) do
 
   create_table "adverts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title", default: "", comment: "广告标题"
@@ -19,14 +19,14 @@ ActiveRecord::Schema.define(version: 20180421024032) do
     t.string "promo_pic_url", default: "", comment: "推广图片"
     t.string "promo_tips", default: "", comment: "推广提示"
     t.string "promo_desc", default: "", comment: "推广描述"
-    t.integer "type", default: 0, comment: "广告类型"
+    t.integer "category", default: 0, comment: "广告类型"
     t.integer "sort", default: 0, comment: "显示顺序"
     t.integer "status", default: 0, comment: "状态"
     t.integer "present_amout", default: 0
     t.integer "limit_fowards", default: 0
     t.integer "limit_price", default: 0
-    t.integer "location_flag", default: 0
-    t.boolean "isdeleted", default: false, comment: "标记删除"
+    t.integer "location", default: 0
+    t.boolean "deleted", default: false, comment: "标记删除"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -34,34 +34,55 @@ ActiveRecord::Schema.define(version: 20180421024032) do
   create_table "businesses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", default: "", comment: "公司名称"
     t.string "brand_name", default: "", comment: "品牌名称"
+    t.string "uid", default: "", comment: "公司条码"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "discovers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "code", comment: "编码"
+    t.string "logo", comment: "图标"
+    t.string "brand", comment: "品牌"
+    t.string "brand_category", comment: "品牌类型"
+    t.string "season", comment: "年份季节"
+    t.string "season_category", comment: "季节类型"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "good_visitors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "visitor_id"
+    t.integer "good_id"
+    t.integer "category"
+    t.index ["visitor_id", "good_id", "category"], name: "index_good_visitors_on_visitor_id_and_good_id_and_category", unique: true
+  end
+
   create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "brand_name", default: "", comment: "品牌名称"
-    t.string "code", default: "", comment: "产品编码"
-    t.text "detail_info", comment: "详细信息"
-    t.integer "evaluate_count", default: 0, comment: "评估值"
-    t.integer "free_ship_num", default: 0, comment: "免运费数量"
-    t.integer "freight", default: 0, comment: "运费"
-    t.string "logo", default: "", comment: "图标"
-    t.integer "market_price", default: 0, comment: "商城价"
-    t.integer "min_buy_num", default: 0, comment: "最少购买数量"
+    t.string "uid", default: "", comment: "商品条码"
     t.string "name", default: "", comment: "商品名称"
-    t.integer "price", default: 0, comment: "(进货)价格"
-    t.integer "sale_count", default: 0, comment: "已售"
-    t.integer "share_amount", default: 0, comment: "分享合计"
-    t.integer "share_times", default: 0, comment: "分享次数"
-    t.string "share_tips", default: "0", comment: "分享提示"
-    t.integer "source_flag", default: 0
-    t.datetime "start_time", comment: "活动开始时间"
-    t.integer "status", default: 0, comment: "状态"
+    t.string "title", default: "", comment: "广告标题"
+    t.string "code", default: "", comment: "产品编码"
+    t.string "brand_name", default: "", comment: "品牌名称"
+    t.string "logo", default: "", comment: "图标"
+    t.string "thum_logo", default: "", comment: "缩略图"
     t.integer "stock_num", default: 0, comment: "库存"
-    t.string "thum_logo", default: "", comment: "大图标"
-    t.datetime "valid_end_time", comment: "活动截止时间"
-    t.integer "whole_num", default: 0, comment: "(享受分享价条件)分享次数"
+    t.integer "price", default: 0, comment: "(进货)价格"
+    t.integer "market_price", default: 0, comment: "商城价"
     t.integer "whole_price", default: 0, comment: "分享价"
+    t.integer "whole_num", default: 0, comment: "(享受分享价条件)分享次数"
+    t.string "share_tips", default: "0", comment: "分享提示"
+    t.integer "share_times", default: 0, comment: "分享次数"
+    t.integer "share_amount", default: 0, comment: "总分享次数"
+    t.integer "min_buy_num", default: 0, comment: "最少购买数量"
+    t.integer "free_ship_num", default: 0, comment: "免运费数量"
+    t.integer "freight", default: 0, comment: "单件运费"
+    t.integer "sale_count", default: 0, comment: "总销量"
+    t.integer "source_flag", default: 0
+    t.integer "evaluate_count", default: 0, comment: "评估值"
+    t.datetime "start_time", comment: "活动开始时间"
+    t.datetime "valid_end_time", comment: "活动截止时间"
+    t.integer "status", default: 0, comment: "状态"
+    t.text "detail_info", comment: "详细信息"
     t.boolean "discover", default: false, comment: "是否为好商品"
     t.boolean "recommend", default: false, comment: "是否为推荐商品"
     t.bigint "business_id", comment: "公司信息"
@@ -70,6 +91,7 @@ ActiveRecord::Schema.define(version: 20180421024032) do
     t.datetime "updated_at", null: false
     t.index ["adverts_id"], name: "index_goods_on_adverts_id"
     t.index ["business_id"], name: "index_goods_on_business_id"
+    t.index ["uid"], name: "index_goods_on_uid", unique: true
   end
 
   create_table "goods_skus", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -81,15 +103,20 @@ ActiveRecord::Schema.define(version: 20180421024032) do
     t.index ["sku_id"], name: "index_goods_skus_on_sku_id"
   end
 
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "status", default: 0, null: false, comment: "订单状态: 1-未付款,2-待收货,3-已完成"
+    t.integer "receive", default: 0, null: false, comment: "签收状态: 1-待付款,2-待发货,3-待收货"
+    t.integer "category", default: 0, null: false, comment: "订单类型"
+    t.bigint "visitor_id", comment: "用户"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category"], name: "index_orders_on_category"
+    t.index ["visitor_id"], name: "index_orders_on_visitor_id"
+  end
+
   create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "photo_file_name", comment: "图片"
-    t.string "photo_content_type", comment: "图片"
-    t.integer "photo_file_size", comment: "图片"
-    t.datetime "photo_updated_at", comment: "图片"
-    t.string "thum_photo_file_name", comment: "图片"
-    t.string "thum_photo_content_type", comment: "图片"
-    t.integer "thum_photo_file_size", comment: "图片"
-    t.datetime "thum_photo_updated_at", comment: "图片"
+    t.string "photo", comment: "图片"
+    t.string "thum_photo", comment: "缩略图"
     t.bigint "good_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -139,14 +166,17 @@ ActiveRecord::Schema.define(version: 20180421024032) do
     t.string "uid", default: ""
     t.string "email", default: ""
     t.string "nick_name", default: ""
-    t.boolean "gender", default: false
+    t.string "mobile", default: ""
+    t.integer "gender", default: 0, comment: "0:未知, 1:男, 2:女"
     t.string "city", default: ""
     t.string "province", default: ""
     t.string "country", default: ""
     t.string "avatar_url", default: ""
+    t.string "openid", default: "", null: false
     t.string "token", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["openid"], name: "index_visitors_on_openid", unique: true
     t.index ["token"], name: "index_visitors_on_token", unique: true
     t.index ["uid"], name: "index_visitors_on_uid", unique: true
   end

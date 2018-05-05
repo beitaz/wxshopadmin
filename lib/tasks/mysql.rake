@@ -7,9 +7,15 @@ namespace :mysql do
   timestamp = Time.now.strftime('%Y%m%d%H%M%S')
   @filename = File.join(dump_dir, timestamp)
 
-  desc "Dump old data"
+  desc "Dump data with table info"
   task :dump do
     sh "mysqldump -u#{@username} -p#{@password} #{@database} > #{@filename}"
+  end
+
+
+  desc "Dump only data"
+  task :data do
+    sh "mysqldump -u#{@username} -p#{@password} --no-create-info --skip-triggers #{@database} > #{@filename}"
   end
 
   desc "Restore old data"

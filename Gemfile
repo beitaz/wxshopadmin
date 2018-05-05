@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'redis'
+# gem 'redis-rails'
 # gem 'active_model_serializers'
 # gem 'bootstrap-sass'
 # gem 'jquery-rails'

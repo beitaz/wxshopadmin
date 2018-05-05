@@ -1,13 +1,8 @@
-good = Good.first
-Photo.create!(good_id: good.id,
-              photo: "http://sujiefs.com/upload/images/20180416/201804161442294368291.jpg",
-              thum_photo: "http://sujiefs.com/upload/images/20180416/201804161442294368291_thumbnail.jpg")
-Photo.create!(good_id: good.id,
-              photo: "http://sujiefs.com/upload/images/20180416/201804161442328098115.jpg",
-              thum_photo: "http://sujiefs.com/upload/images/20180416/201804161442328098115_thumbnail.jpg")
-Photo.create!(good_id: good.id,
-              photo: "http://sujiefs.com/upload/images/20180416/201804161442357886148.jpg",
-              thum_photo: "http://sujiefs.com/upload/images/20180416/201804161442357886148_thumbnail.jpg")
-Photo.create!(good_id: good.id,
-              photo: "http://sujiefs.com/upload/images/20180416/201804161442381813072.jpg",
-              thum_photo: "http://sujiefs.com/upload/images/20180416/201804161442381813072_thumbnail.jpg")
+good = JSON.parse(File.read(Rails.root.join('tmp', 'data', 'detail.json')))
+
+good['photoList'].each do |photo|
+  Photo.find_or_create_by(good_id: photo['goodsId']) do |p|
+    p.photo = photo['photo']
+    p.thum_photo = photo['thumPhoto']
+  end
+end

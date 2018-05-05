@@ -12,6 +12,8 @@ if Rails.env.development?
   require Rails.root.join('db', 'init', 'init_user.rb')
   require Rails.root.join('db', 'init', 'init_business.rb')
   require Rails.root.join('db', 'init', 'init_goods.rb')
-  # require Rails.root.join('db', 'init', 'photo.rb')
-  # require Rails.root.join('db', 'init', 'init_system.rb')
+  require Rails.root.join('db', 'init', 'init_photo.rb')
+  require Rails.root.join('db', 'init', 'init_recommend.rb')
+  require Rails.root.join('db', 'init', 'init_advert.rb')
+  require Rails.root.join('db', 'init', 'init_discover.rb')
 end

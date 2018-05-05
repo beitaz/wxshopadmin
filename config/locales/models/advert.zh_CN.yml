@@ -11,7 +11,7 @@ zh-CN:
         promo_pic_url: 推广图片链接
         promo_tips: 推广提示
         promo_desc: 推广描述
-        type: 广告类型
+        category: 广告类型
         sort: 显示顺序
         status: 状态
         isdeleted: 标记删除
