@@ -19,6 +19,18 @@ class GoodVisitor < ApplicationRecord
   # scope :add, -> { find_or_create_by() }
   # Ex:- scope :active, -> {where(:active => true)}
 
+  # 我的收藏记录
+  def self.favorites(visitor_id)
+    gvs = GoodVisitor.where(visitor_id: visitor_id, category: 2)
+    Good.where(id: gvs.map(&:good_id))
+  end
+
+  # 我的访问记录
+  def self.visites(visitor_id)
+    gvs = GoodVisitor.where(visitor_id: visitor_id, category: 1)
+    Good.where(id: gvs.map(&:good_id))
+  end
+
   # 是否已收藏
   def self.favorited?(visitor_id, good_id)
     find_by(visitor_id: visitor_id, good_id: good_id, category: 2).present?

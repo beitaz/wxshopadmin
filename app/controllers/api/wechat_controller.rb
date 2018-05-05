@@ -2,7 +2,6 @@ class Api::WechatController < Api::BaseController
   def jscode2session
     skip_authorization
     session = code2session(params[:js_code])
-    # session = {"session_key"=>"CP2CSDZIhgDPxT3xsGBzmQ==", "openid"=>"oNWgu5Wm1C1UxLDU1dpPr-H58qQQ"}
     result = {}
     if session['openid'] && session['session_key']
       Visitor.find_or_create_by(openid: session['openid']) do |visitor|

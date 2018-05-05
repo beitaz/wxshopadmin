@@ -43,6 +43,7 @@
 #
 
 class Good < ApplicationRecord
+  attr_accessor :category
   has_many :photos
   has_many :good_visitors
   has_many :visitors, through: :good_visitors

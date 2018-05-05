@@ -39,28 +39,33 @@ Rails.application.routes.draw do
       get 'jscode2session', to: 'wechat#jscode2session'
     end
 
-    scope :userBrowse do
-      get 'add', to: 'users#browsed'
+    scope :users do
+      get 'register', to: 'users#register'  # 绑定手机
+      get 'info', to: 'users#info'  # 用户信息(手机绑定)
+      get 'browses', to: 'users#browses'  # 所有浏览记录(足迹)
+      get 'browsed', to: 'users#browsed'  # 添加浏览记录(足迹)
+      get 'unbrowse', to: 'users#unbrowse'  # 删除浏览记录(足迹)
+      get 'favorites', to: 'users#favorites'  # 所有收藏
+      get 'favorited' => 'users#favorited'  # 添加收藏
+      get 'unfavorite' => 'users#unfavorite'  # 取消收藏
+      get 'orders' => 'users#orders'  # 我的订单
+      get 'shopcart', to: 'users#shopcart'  # 加入购物车
     end
-    scope :userCenter do
-      get 'register', to: 'users#register'
-      get 'getUserInfo', to: 'users#info'
-      get 'favorites' => 'users#favorites'
+
+    scope :goods do
+      get 'info' => 'goods#info'  # 商品详情
+      get 'favorited' => 'goods#favorited'  # 是否收藏
     end
+
     scope :adverts do
       get 'list' => 'goods#adverts'
     end
     scope :mall do
       get 'discoverList' => 'goods#discovers'
-      get 'goods' => 'goods#show'
+      
       scope :goodsOrder do
         get 'commitData' => 'users#orders'
         get 'getMyOrderList' => 'users#orders'
-      end
-      scope :goodsFavorite do
-        get 'goodsIsFavorite' => 'goods#favorited'
-        get 'add' => 'goods#favorite'
-        get 'delete' => 'goods#cancel'
       end
     end
     scope :home do

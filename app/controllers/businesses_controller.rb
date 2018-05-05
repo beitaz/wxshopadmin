@@ -7,13 +7,12 @@ class BusinessesController < ApplicationController
     skip_authorization
     result = {}
     @businesses = params[:q].present? ? Business.where('name LIKE ?', "%#{params[:q]}%") : Business.all
-    if params[:p].present?
-      per_page = ENV['PER_PAGE'].to_i
-      surplus = @businesses.offset((params[:p].to_i - 1) * per_page)
+    if params[:page].present?
+      surplus = @businesses.page(params[:page]).per(ENV['PER_PAGE'])
       result = {
-        results: surplus.limit(per_page).map { |b| { id: b.id, text: b.name } },
+        results: surplus.map { |b| { id: b.id, text: b.name } },
         pagination: {
-          more: surplus.size > params[:p].to_i * per_page
+          more: surplus.size > params[:page].to_i * per_page
         }
       }
     end
