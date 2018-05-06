@@ -1,0 +1,12 @@
+<section class="content-header">
+  <h1>新建<%= '基本' if @sku.parent_id&.zero? %>库存属性</h1>
+  <div class="tools">
+    <%= link_to '新建基本库存属性', new_sku_path(parent_id: 0), class:'btn btn-sm btn-primary pull-right' %>
+    <%= link_to '新建库存属性', new_sku_path, class:'btn btn-sm btn-primary pull-right' %>
+    <%= link_to "返回列表", skus_path, class: 'btn btn-sm btn-default pull-right' %>
+  </div>
+</section>
+
+<section class="content container-fluid">
+  <%= render 'form', sku: @sku %>
+</section>

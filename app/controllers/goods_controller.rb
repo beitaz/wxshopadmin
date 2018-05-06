@@ -23,6 +23,7 @@ class GoodsController < ApplicationController
 
   # GET /goods/new
   def new
+    skip_authorization
     @good = Good.new
   end
 

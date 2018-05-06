@@ -1,11 +1,14 @@
 zh-CN:
   activerecord:
     models:
-      sku: 库存
+      sku: 库存属性
     attributes:
        sku:
         id: 编号
+        parent: 父属性
+        name: 名称
         price: 价格
+        defaulted: 默认选项
         sale_count: 已售
         sku_name_ids: 库存属性 ID
         sku_names: 库存属性名称

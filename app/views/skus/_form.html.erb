@@ -1,0 +1,112 @@
+<%= form_with(model: sku, local: true, class: 'form-horizontal') do |form| %>
+  <% flash[:errors] = sku.errors.full_messages if sku.errors.any? %>
+
+  <div class="form-group">
+    <%= form.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: 'form-control', required: true, placeholder: '请输入属性名称' %>
+    </div>
+  </div>
+
+  <!-- 基本属性只需要一个名称,一个隐藏 parent_id 字段 -->
+  <% if sku.parent_id&.zero? %>
+    <%= form.hidden_field :parent_id %>
+  <% else %>
+  <div class="form-group">
+    <%= form.label :parent, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%#= form.select :bussiness_id, Business.all.collect { |b| [b.name, b.id] }, { include_blank: '请选择公司' }, class: 'form-control' %>
+      <%= form.select :parent_id, Sku.base.collect { |b| [b.name, b.id] }, { include_blank: '请选择基本属性' }, class: 'form-control select2' %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :defaulted, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10 radio-group">
+      <%= form.radio_button :defaulted, 'true', checked: sku.defaulted, id: 'defaulted_true', class: 'flat-red' %>
+      <%= form.label :defaulted, '是', value: true, for: 'defaulted_true' %>
+      <%= form.radio_button :defaulted, 'false', checked: !sku.defaulted, id: 'defaulted_false' %>
+      <%= form.label :defaulted, '否', value: false, for: 'defaulted_false' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :price, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :price, class: 'form-control', placeholder: '请输入价格' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :sale_count, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :sale_count, class: 'form-control', placeholder: '请输入已售' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :stock_num, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :stock_num, class: 'form-control', placeholder: '请输入库存' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :stock_num_warn, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :stock_num_warn, class: 'form-control', placeholder: '请输入警戒库存' %>
+    </div>
+  </div>
+  
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-block btn-info' %>
+  </div>
+
+<% end %>
+
+<div class="modal fade" id="newBaseSkuModal" tabindex="-1" role="dialog" aria-labelledby="newBaseSkuModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+<script>
+$(function(){
+  $('.select2').select2({
+    ajax: {
+      url: '/skus.json',
+      method: 'GET',
+      delay: 1000,  // wait 250 milliseconds before triggering the request
+      dataType: 'json',
+      data: function (params) {
+        console.log('params = ', params);
+        // Query parameters will be ?search=[term]&page=[page]
+        return {
+          term: params.term,
+          page: params.page || 1
+        };
+      },
+      processResults: function (data, params) {
+        params.page = params.page || 1;
+        console.log('Current page = %s, Ajax result = %O', params.page, data);
+        return {
+          results: $.map(data.list, function(obj) {
+            obj.id = obj.id || obj.uid;
+            obj.text = obj.text || obj.name;
+            return obj;
+          }),
+          pagination: {
+            more: params.page < data.total_page
+          }
+        };
+      },
+      cache: true,
+      placeholder: '',
+      minimumInputLength: 1
+    }
+  });
+});
+</script>

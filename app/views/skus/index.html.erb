@@ -1,0 +1,45 @@
+<section class="content-header">
+  <h1>库存属性列表</h1>
+  <div class="tools">
+    <%= link_to "新建基本库存属性", new_sku_path(parent_id: 0), class: 'btn btn-sm btn-primary pull-right' %>
+    <%= link_to "新建库存属性", new_sku_path, class: 'btn btn-sm btn-primary pull-right' %>
+  </div>
+</section>
+
+<section class="content container-fluid">
+  <table class="table table-bordered table-condensed table-striped">
+    <thead align="center">
+      <tr>
+        <th>ID</th>
+        <th>基本库存属性</th>
+        <th>库存属性</th>
+        <th>默认选中</th>
+        <th>商品价格</th>
+        <th>已售件数</th>
+        <th>库存</th>
+        <th>库存警戒</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @skus.each do |sku| %>
+      <tr>
+        <td><%= sku.id %></td>
+        <td><%= sku.parent.present? ? sku.parent.name : '是' %></td>
+        <td><%= sku.name %></td>
+        <td><%= sku.defaulted ? '是' : '否' %></td>
+        <td><%= sku.price %></td>
+        <td><%= sku.sale_count %></td>
+        <td><%= sku.stock_num %></td>
+        <td><%= sku.stock_num_warn %></td>
+        <td>
+          <%#= link_to '详情', sku %>
+          <%= link_to "编辑", edit_sku_path(sku) %>
+          <%= link_to "删除", sku, method: :delete, data: { confirm: '确认删除?' } %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+

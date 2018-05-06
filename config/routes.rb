@@ -16,6 +16,9 @@ Rails.application.routes.draw do
     get 'profile', on: :member
   end
   resource :setting
+  resources :skus do
+    get 'base', on: :collection
+  end
   resources :visitors
   resources :businesses
   resources :adverts

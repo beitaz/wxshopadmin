@@ -94,11 +94,10 @@ ActiveRecord::Schema.define(version: 20180504131701) do
     t.index ["uid"], name: "index_goods_on_uid", unique: true
   end
 
-  create_table "goods_skus", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "goods_skus", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "good_id"
     t.bigint "sku_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["good_id", "sku_id"], name: "index_goods_skus_on_good_id_and_sku_id", unique: true
     t.index ["good_id"], name: "index_goods_skus_on_good_id"
     t.index ["sku_id"], name: "index_goods_skus_on_sku_id"
   end
@@ -124,18 +123,19 @@ ActiveRecord::Schema.define(version: 20180504131701) do
   end
 
   create_table "skus", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "parent_id", comment: "自连接"
+    t.string "name", comment: "库存属性"
+    t.boolean "defaulted", default: false
     t.integer "price", default: 0, comment: "商品价格(同种商品不同型号价格可能不同)"
     t.integer "sale_count", default: 0, comment: "已售"
-    t.string "sku_name_ids", default: "", comment: "库存属性 ID(\"[1446,1447]\")"
-    t.string "sku_names", default: "", comment: "库存属性名称(\"[\\\"颜色\\\",\\\"尺码\\\"]\")"
-    t.string "sku_val_ids", default: "", comment: "库存属性值ID(\"[3562,3563]\")"
-    t.string "sku_vals", default: "", comment: "库存属性值(\"[\\\"图片色\\\",\\\"S\\\"]\")"
     t.integer "stock_num", default: 0, comment: "库存"
     t.integer "stock_num_warn", default: 0, comment: "库存警戒"
-    t.bigint "goods_id", comment: "商品"
+    t.bigint "good_id", comment: "商品"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["goods_id"], name: "index_skus_on_goods_id"
+    t.index ["good_id"], name: "index_skus_on_good_id"
+    t.index ["parent_id", "name"], name: "index_skus_on_parent_id_and_name", unique: true
+    t.index ["parent_id"], name: "index_skus_on_parent_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

@@ -86,7 +86,7 @@ $(function(){
         // Query parameters will be ?search=[term]&page=[page]
         return {
           q: params.term,
-          p: params.page || 1
+          page: params.page || 1
         };
       },
       processResults: function (data, params) {
