@@ -48,7 +48,8 @@ class Good < ApplicationRecord
   has_many :visitors, through: :good_visitors
   belongs_to :business
   belongs_to :advert, optional: true
-  has_and_belongs_to_many :skus
+  has_many :skus
+  accepts_nested_attributes_for :skus, allow_destroy: true
 
   scope :adverts, -> { where.not(adverts_id: nil) }
   scope :discovers, -> { where(discover: true) }

@@ -3,6 +3,10 @@ body {
   min-width: 320px;
 }
 
+.dl-horizontal {
+  border: 1px solid gray;
+}
+
 .main-header {
   .navbar-custom-menu > ul.navbar-nav > li {
     &.open {
@@ -154,4 +158,43 @@ dl {
 .input-group[class*="col-"] {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+/** 重写 boostrap modal 样式 **/
+
+.modal .modal-dialog {
+  .modal-content {
+    .modal-header, .modal-footer {
+      padding: 5px 15px;
+    }
+    .modal-body {
+      padding: 15px 15px 0 15px;
+    }
+  }
+}
+
+/** 重写 simple_form_boostrap 样式 **/
+.horizontal_form {
+  .form-group {
+    label.col-sm-3 {
+      text-align: right;
+      abbr[title] {
+        color: red;
+        border-bottom: unset;
+        text-decoration: unset;
+      }
+    }
+    .form-check {
+      .collection_radio_buttons {
+        padding-left: 5px;
+      }
+      &.form-check-inline {
+        display: unset;
+        padding-right: 10px;
+      }
+    }
+  }
+}
+input[aria-invalid] {
+  border-color: red;
 }

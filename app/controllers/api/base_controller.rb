@@ -1,7 +1,7 @@
 class Api::BaseController < ApplicationController
   respond_to :json
   skip_before_action :authenticate_user!
-  before_action :sign_verify#, except: [:debug, :adverts, :discovers, :recommends, :detail] 
+  before_action :sign_verified?#, except: [:debug, :adverts, :discovers, :recommends, :detail] 
   before_action :write_params, only: [:adverts, :discovers, :recommends, :detail]
   before_action :create_goods, only: :detail
   @result = {
@@ -46,7 +46,7 @@ class Api::BaseController < ApplicationController
 
   protected
 
-    def sign_verify
+    def sign_verified?
       sign = params[:sign]
       time = params[:time]
       sign.present? && time.present? && Digest::MD5.hexdigest(time + ENV['SECRET_KEY']) == sign

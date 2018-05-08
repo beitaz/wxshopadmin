@@ -5,6 +5,7 @@ zh-CN:
     attributes:
        good:
         id: 编号
+        uid: 商品条码
         brand_name: 品牌
         code: 商品编码
         detail_info: 商品详细
@@ -15,6 +16,7 @@ zh-CN:
         market_price: 商城价
         min_buy_num: 最少购买数
         name: 名称
+        title: 推荐标题
         price: 价格
         sale_count: 已售
         share_amount: 分享合计
@@ -34,4 +36,6 @@ zh-CN:
         updated_at: 修改时间
         business: 所属公司
         photos: 图片
-        skus: 库存
+        skus: 库存属性
+        sku:
+          name: 属性名称

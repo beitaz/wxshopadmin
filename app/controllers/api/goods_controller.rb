@@ -18,7 +18,7 @@ class Api::GoodsController < Api::BaseController
   def discovers
     skip_authorization
     discovers = Discover.all
-    if sign_verify
+    if sign_verified?
       @result = {
         code: 0,
         list: discovers,
@@ -31,7 +31,7 @@ class Api::GoodsController < Api::BaseController
   # GET hostGoodsList.json
   def recommends
     skip_authorization
-    if sign_verify
+    if sign_verified?
       recommends = Good.all.page(params[:page]).per(params[:size])
       @result = {
         code: 0,
@@ -50,7 +50,7 @@ class Api::GoodsController < Api::BaseController
 
   def info
     skip_authorization
-    if sign_verify
+    if sign_verified?
       good = Good.find(params[:id])
       now = Time.zone.now
       valid = good.start_time < now && good.valid_end_time > now
@@ -58,6 +58,7 @@ class Api::GoodsController < Api::BaseController
         code: 0,
         data: good,
         photos: good.photos,
+        skus: good.skus,
         validDate: valid ? 1 : 0
       }
     end
@@ -67,7 +68,7 @@ class Api::GoodsController < Api::BaseController
   # 是否收藏
   def favorited
     skip_authorization
-    if sign_verify
+    if sign_verified
       visitor = Visitor.find_by(uid: params[:openid])
       # favorited = visitor.goods.include?(Good.find(params[:id]))
       @result = {

@@ -1,0 +1,24 @@
+form {
+  .good-skus {
+    .skus-btn {
+      padding-top: 0px;
+      // border: unset;
+      // color: #fff;
+    }
+    .fields {
+      // select {
+      //   border-radius: unset;
+      // }
+      border: 1px solid #D1D5DE;
+      &:not(:first-child) {
+        margin-top: 1px;
+      }
+      tr {
+        height: 40px;
+        th {
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}

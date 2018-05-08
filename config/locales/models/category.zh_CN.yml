@@ -1,0 +1,10 @@
+zh-CN:
+  activerecord:
+    models:
+      category: 类型
+    attributes:
+      category:
+        id: 编号
+        name: 类型名称
+        base: 基础分类
+        parent: 父级分类

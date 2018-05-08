@@ -1,0 +1,9 @@
+zh-CN:
+  activerecord:
+    models:
+      resource: 类型
+    attributes:
+      resource:
+        id: 编号
+        name: 名称
+        classable: 分类资源

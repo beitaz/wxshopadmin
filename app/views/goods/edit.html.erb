@@ -1,6 +1,11 @@
-<h1>Editing Good</h1>
+<section class="content-header">
+  <h1>编辑推荐商品</h1>
+  <div class="tools">
+    <%= link_to "返回列表", recommends_goods_path, class: 'btn btn-sm btn-default pull-right' %>
+  </div>
+</section>
 
-<%= render 'form', good: @good %>
+<section class="content container-fluid">
+  <%= render 'goods/form' %>
+</section>
 
-<%= link_to 'Show', @good %> |
-<%= link_to 'Back', goods_path %>

@@ -25,6 +25,7 @@ class GoodsController < ApplicationController
   def new
     skip_authorization
     @good = Good.new
+    @sku = @good.skus.new
   end
 
   # GET /goods/1/edit
@@ -39,7 +40,7 @@ class GoodsController < ApplicationController
 
     respond_to do |format|
       if @good.save
-        format.html { redirect_to @good, notice: 'Good was successfully created.' }
+        format.html { redirect_to :goods, notice: "已创建编号为 '#{@good.code}' 的商品." }
         format.json { render :show, status: :created, location: @good }
       else
         format.html { render :new }
@@ -54,7 +55,7 @@ class GoodsController < ApplicationController
     skip_authorization
     respond_to do |format|
       if @good.update(good_params)
-        format.html { redirect_to @good, notice: 'Good was successfully updated.' }
+        format.html { redirect_to :goods, notice: "编号为 '#{@good.code}' 的商品已更新." }
         format.json { render :show, status: :ok, location: @good }
       else
         format.html { render :edit }
@@ -82,6 +83,12 @@ class GoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def good_params
-      params.fetch(:good, {})
+      params.require(:good).permit(:id, :uid, :name, :title, :code, :brand_name, :logo, :thum_logo,
+                                   :stock_num, :price, :market_price, :whole_price, :whole_num, :share_tips,
+                                   :share_times, :share_amount, :min_buy_num, :free_ship_num, :freight,
+                                   :sale_count, :source_flag, :evaluate_count, :start_time, :valid_end_time,
+                                   :status, :detail_info, :discover, :recommend, :business_id, :adverts_id,
+                                   skus_attributes: [:id, :name, :defaulted, :price, :sale_count,
+                                                     :stock_num, :stock_num_warn, :_destroy])
     end
 end

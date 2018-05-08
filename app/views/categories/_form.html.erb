@@ -1,0 +1,10 @@
+<%= simple_form_for(@category, html: { class: 'form-horizontal horizontal_form' }) do |form| %>
+<div class="modal-body">
+
+  <%= form.hidden_field :parent_id %>
+  <%= form.input :name, autofocus: true, required: true, placeholder: '请输入类型名称' %>
+
+  <%= form.button :submit, class: 'btn btn-block btn-info' %>
+</div>
+<% end %>
+

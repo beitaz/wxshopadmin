@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180504131701) do
+ActiveRecord::Schema.define(version: 20180507113810) do
 
   create_table "adverts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title", default: "", comment: "广告标题"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 20180504131701) do
     t.string "uid", default: "", comment: "公司条码"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "parent_id", comment: "父类型"
+    t.string "name", null: false, comment: "类型名称"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
   create_table "discovers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -94,14 +102,6 @@ ActiveRecord::Schema.define(version: 20180504131701) do
     t.index ["uid"], name: "index_goods_on_uid", unique: true
   end
 
-  create_table "goods_skus", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "good_id"
-    t.bigint "sku_id"
-    t.index ["good_id", "sku_id"], name: "index_goods_skus_on_good_id_and_sku_id", unique: true
-    t.index ["good_id"], name: "index_goods_skus_on_good_id"
-    t.index ["sku_id"], name: "index_goods_skus_on_sku_id"
-  end
-
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "status", default: 0, null: false, comment: "订单状态: 1-未付款,2-待收货,3-已完成"
     t.integer "receive", default: 0, null: false, comment: "签收状态: 1-待付款,2-待发货,3-待收货"
@@ -122,8 +122,17 @@ ActiveRecord::Schema.define(version: 20180504131701) do
     t.index ["good_id"], name: "index_photos_on_good_id"
   end
 
+  create_table "resources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.integer "resource_id"
+    t.string "resource_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_resources_on_name"
+    t.index ["resource_id", "resource_type"], name: "index_resources_on_resource_id_and_resource_type"
+  end
+
   create_table "skus", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "parent_id", comment: "自连接"
     t.string "name", comment: "库存属性"
     t.boolean "defaulted", default: false
     t.integer "price", default: 0, comment: "商品价格(同种商品不同型号价格可能不同)"
@@ -134,8 +143,7 @@ ActiveRecord::Schema.define(version: 20180504131701) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["good_id"], name: "index_skus_on_good_id"
-    t.index ["parent_id", "name"], name: "index_skus_on_parent_id_and_name", unique: true
-    t.index ["parent_id"], name: "index_skus_on_parent_id"
+    t.index ["name"], name: "index_skus_on_name"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

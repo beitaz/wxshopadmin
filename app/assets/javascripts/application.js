@@ -12,9 +12,13 @@
 //
 //= require rails-ujs
 //= require jquery/dist/jquery
-//= require bootstrap/dist/js/bootstrap
+//= require bootstrap-sprockets
+//= require bootstrap-wysihtml5
+// require bootstrap-wysihtml5/locales/zh-CN
+//= require bootstrap-wysihtml5.zh-CN
 //= require admin-lte/dist/js/adminlte
 //= require adminlte
+//= require jquery_nested_form
 //= require select2/dist/js/select2
 // require select2/dist/js/select2.full
 //= require select2/dist/js/i18n/zh-CN

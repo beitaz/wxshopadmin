@@ -8,11 +8,7 @@ class SkusController < ApplicationController
     respond_to do |format|
       format.html { @skus = Sku.all }
       format.json do
-        @skus = Sku.where("name LIKE '%#{params[:term]}%'").page(params[:page]).per(ENV['PER_PAGE'])
-        render json: {
-          list: @skus,
-          page_total: @skus.total_pages
-        }
+        debugger
       end
     end
   end
@@ -26,13 +22,14 @@ class SkusController < ApplicationController
   # GET /skus/new
   def new
     skip_authorization
-    @sku = params[:parent_id] ? Sku.new(parent_id: params[:parent_id]) : Sku.new
+    @sku = Sku.new
   end
 
   # GET /skus/new
   def base
     skip_authorization
-    @sku = Sku.new(parent_id: 0)
+    debugger
+    @sku = Sku.new
     # render layout: false
   end
 
@@ -91,12 +88,12 @@ class SkusController < ApplicationController
     end
 
     def sku_name
-      @sku.parent_id.zero? ? @sku.name : @sku.parent.name + @sku.name
+      @sku.name
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sku_params
-      params.require(:sku).permit(:id, :parent_id, :name, :defaulted, :price, :sale_count,
+      params.require(:sku).permit(:id, :name, :defaulted, :price, :sale_count,
                                   :stock_num, :stock_num_warn, :good_id)
     end
 end

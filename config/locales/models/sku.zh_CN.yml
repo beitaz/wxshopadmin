@@ -5,7 +5,6 @@ zh-CN:
     attributes:
        sku:
         id: 编号
-        parent: 父属性
         name: 名称
         price: 价格
         defaulted: 默认选项

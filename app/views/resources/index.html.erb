@@ -1,0 +1,48 @@
+<section class="content-header">
+  <h1>类型列表</h1>
+  <div class="tools">
+    <%= link_to "新增类型", new_resource_path, class: 'btn btn-sm btn-primary pull-right', data: { toggle: 'modal', target: '#newBaseSkuModal' } %>
+  </div>
+</section>
+
+<section class="content container-fluid">
+  <table class="table table-bordered table-condensed table-striped">
+    <thead align="center">
+      <tr>
+        <th>ID</th>
+        <th>名称</th>
+        <th>类型 ID</th>
+        <th>类型名称</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @resources.each do |resource| %>
+      <tr>
+        <td><%= resource.id %></td>
+        <td><%= resource.name %></td>
+        <td><%= resource.resource_id %></td>
+        <td><%= resource.resource_type %></td>
+        <td>
+          <%= link_to '详情', resource %>
+          <%= link_to "编辑", edit_resource_path(resource) %>
+          <%= link_to "删除", resource, method: :delete, data: { confirm: '确认删除?' } %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<div class="modal fade" id="newBaseSkuModal" tabindex="-1" role="dialog" aria-labelledby="newBaseSkuModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+<script>
+$("#newBaseSkuModal").on("hidden.bs.modal", function(e){
+  $(this).removeData("bs.modal");
+});
+</script>

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :categories
+  resources :resources
   resources :discovers
   resources :orders
   resources :settings
@@ -53,6 +55,7 @@ Rails.application.routes.draw do
       get 'unfavorite' => 'users#unfavorite'  # 取消收藏
       get 'orders' => 'users#orders'  # 我的订单
       get 'shopcart', to: 'users#shopcart'  # 加入购物车
+      get 'purchased', to: 'users#purchased'  # 我的订购
     end
 
     scope :goods do

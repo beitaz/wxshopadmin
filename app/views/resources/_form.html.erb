@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <h4 class="modal-title" id="newBaseSkuModalLabel"><%= @resource.new_record? ? '新增' : '编辑' %>类型</h4>
+</div>
+<%= simple_form_for(@resource, html: { class: 'form-horizontal' }) do |form| %>
+<div class="modal-body">
+  <% flash[:errors] = @resource.errors.full_messages if @resource.errors.any? %>
+
+  <div class="form-group form-inputs">
+    <%= form.label :name, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.text_field :name, class: 'form-control', required: true, placeholder: '请输入类型名称' %>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer form-actions">
+  <%= form.button :button, '关闭', type: 'button', class: 'btn btn-default', data: { dismiss: 'modal' } %>
+  <%= form.button :submit, class: 'btn btn-primary' %>
+</div>
+<% end %>

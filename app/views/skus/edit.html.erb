@@ -1,9 +1,5 @@
 <section class="content-header">
-  <% if @sku.parent_id.zero? %>
-  <h1>编辑基本库存属性</h1>
-  <% else %>
   <h1>编辑库存属性</h1>
-  <% end %>
   <div class="tools">
     <%= link_to "返回列表", skus_path, class: 'btn btn-sm btn-default pull-right' %>
   </div>

@@ -1,7 +1,6 @@
 <section class="content-header">
   <h1>库存属性列表</h1>
   <div class="tools">
-    <%= link_to "新建基本库存属性", new_sku_path(parent_id: 0), class: 'btn btn-sm btn-primary pull-right' %>
     <%= link_to "新建库存属性", new_sku_path, class: 'btn btn-sm btn-primary pull-right' %>
   </div>
 </section>
@@ -11,7 +10,6 @@
     <thead align="center">
       <tr>
         <th>ID</th>
-        <th>基本库存属性</th>
         <th>库存属性</th>
         <th>默认选中</th>
         <th>商品价格</th>
@@ -25,7 +23,6 @@
       <% @skus.each do |sku| %>
       <tr>
         <td><%= sku.id %></td>
-        <td><%= sku.parent.present? ? sku.parent.name : '是' %></td>
         <td><%= sku.name %></td>
         <td><%= sku.defaulted ? '是' : '否' %></td>
         <td><%= sku.price %></td>
