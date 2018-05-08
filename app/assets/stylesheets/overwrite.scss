@@ -3,10 +3,6 @@ body {
   min-width: 320px;
 }
 
-.dl-horizontal {
-  border: 1px solid gray;
-}
-
 .main-header {
   .navbar-custom-menu > ul.navbar-nav > li {
     &.open {
@@ -195,6 +191,14 @@ dl {
     }
   }
 }
-input[aria-invalid] {
-  border-color: red;
+.simple_form {
+  .form-group {
+    input[aria-invalid] {
+      border-color: red;
+    }
+    .invalid-feedback {
+      margin-top: 2px;
+      color: red;
+    }
+  }
 }

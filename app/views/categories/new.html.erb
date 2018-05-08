@@ -1,8 +1,7 @@
 <section class="content-header">
   <h1>新增<%= '基本' if @category.parent_id == 0 %>类型</h1>
   <div class="tools">
-    <%= link_to "新增基本类型", new_category_path(parent_id: 0), class: 'btn btn-sm btn-primary pull-right' %>
-    <%= link_to "新增类型", new_category_path, class: 'btn btn-sm btn-primary pull-right' %>
+    <%= link_to "返回列表", categories_path, class: 'btn btn-sm btn-default pull-right' %>
   </div>
 </section>
 
