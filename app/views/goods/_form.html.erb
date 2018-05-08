@@ -1,167 +1,31 @@
-<%= nested_form_for(@good, url: @good.new_record? ? goods_path : good_path(@good), html: { class: 'form-horizontal' }) do |form| %>
-  <% flash[:errors] = @good.errors.full_messages if @good.errors.any? %>
+<%= simple_nested_form_for(@good, url: @good.new_record? ? goods_path : good_path(@good), html: { class: 'form-horizontal' }) do |form| %>
+  <%# flash[:errors] = @good.errors.full_messages if @good.errors.any? %>
 
-  <div class="form-group">
-    <%= form.label :uid, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.text_field :uid, class: 'form-control', disabled: true, placeholder: '请输入商品条码' %>
-    </div>
-  </div>
+  <%= form.input :uid, disabled: true %>
+  <%= form.association :business, prompt: '请选择公司' %>
+  <%= form.input :brand_name, disabled: true %>
+  <%= form.input :name, required: true, placeholder: '请输入商品名称' %>
+  <%= form.input :code, placeholder: '请输入商品编码' %>
+  <%= form.input :title, placeholder: '请输入推荐标题' %>
+  <%= form.input :logo, placeholder: '请输入商品图片' %>
+  <%= form.input :thum_logo, placeholder: '请输入商品缩略图' %>
+  <%= form.input :stock_num, as: :integer, placeholder: '请输入库存数量' %>
+  <%= form.input :price, as: :decimal, placeholder: '请输入价格' %>
+  <%= form.input :market_price, as: :decimal, placeholder: '请输入商城价' %>
+  <%= form.input :whole_price, as: :decimal, placeholder: '请输入分享价' %>
+  <%= form.input :whole_num, as: :integer, placeholder: '请输入分享次数(即享受分享价的条件)' %>
+  <%= form.input :share_tips, placeholder: '请输入分享提示' %>
+  <%= form.input :share_times, as: :integer, placeholder: '请输入已分享次数' %>
+  <%= form.input :share_amount, as: :integer, placeholder: '请输入已分享次数合计' %>
+  <%= form.input :min_buy_num, as: :integer, placeholder: '请输入最少购买数' %>
+  <%= form.input :freight, as: :decimal, placeholder: '请输入运费金额' %>
+  <%= form.input :free_ship_num, as: :integer, placeholder: '请输入免运费件数' %>
+  <%= form.input :sale_count, as: :integer, placeholder: '请输入已售件数合计' %>
+  <%= form.input :source_flag, as: :integer, placeholder: '请输入 Source Flag(可能是推荐\首页广告\好商品的标记)' %>
+  <%= form.input :evaluate_count, as: :integer, placeholder: '请输入评估值 Evaluate Count' %>
+  <%= form.input :status, as: :integer, placeholder: '请输入状态' %>
 
-  <div class="form-group">
-    <%= form.label :business, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%#= form.select :business_id, Business.all.collect { |b| [b.name, b.id] }, { include_blank: '请选择公司' }, class: 'form-control' %>
-      <%= form.select :business_id, Business.all.collect { |b| [b.name, b.id] }, {}, class: 'form-control select2' %>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <%= form.label :brand_name, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.text_field :brand_name, class: 'form-control', placeholder: '请输入品牌名称' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :name, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.text_field :name, class: 'form-control', autofocus: true, required: true, placeholder: '请输入商品名称' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :title, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.text_field :title, class: 'form-control', placeholder: '请输入推荐标题' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :code, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.text_field :code, class: 'form-control', placeholder: '请输入商品编码' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :logo, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.text_field :logo, class: 'form-control', placeholder: '请输入商品图片' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :thum_logo, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.text_field :thum_logo, class: 'form-control', placeholder: '请输入商品缩略图' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :stock_num, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :stock_num, class: 'form-control', placeholder: '请输入商品库存' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :price, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :price, class: 'form-control', placeholder: '请输入商品价格' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :market_price, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :market_price, class: 'form-control', placeholder: '请输入商场价' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :whole_price, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :whole_price, class: 'form-control', placeholder: '请输入分享价' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :whole_num, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :whole_num, class: 'form-control', placeholder: '请输入享受分享价的分享次数' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :share_tips, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.text_field :share_tips, class: 'form-control', placeholder: '请输入分享提示' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :share_times, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :share_times, class: 'form-control', placeholder: '请输入分享次数' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :share_amount, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :share_amount, class: 'form-control', placeholder: '请输入分享次数合计' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :min_buy_num, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :min_buy_num, class: 'form-control', placeholder: '请输入最少购买数' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :freight, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :freight, class: 'form-control', placeholder: '请输入运费金额' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :free_ship_num, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :free_ship_num, class: 'form-control', placeholder: '请输入免运费件数' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :sale_count, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :sale_count, class: 'form-control', placeholder: '请输入总销量' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :source_flag, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :source_flag, class: 'form-control', placeholder: '请输入 Source Flag(可能是推荐\首页广告\好商品的标记)' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :evaluate_count, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :evaluate_count, class: 'form-control', placeholder: '请输入评估值 Evaluate Count' %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :status, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :status, class: 'form-control', placeholder: '请输入状态' %>
-    </div>
-  </div>
 
   <% if @good.skus.present? %>
   <div class="form-group">
@@ -179,13 +43,13 @@
 
   <div class="form-group good-skus">
       <label class="col-sm-2 control-label">
-        <%= form.link_to_add '添加库存属性', :skus, data: { target: '#goodSkus' }, class: 'btn btn-xs btn-info pull-right skus-btn' %>
+        <%= form.link_to_add '添加库存单位', :skus, data: { target: '#goodSkus' }, class: 'btn btn-xs btn-info pull-right skus-btn' %>
       </label>
       <div class="col-sm-10" id="goodSkus">
         <%= form.fields_for :skus, wrapper: false do |good_sku| %>
           <table class='fields' style='width: 100%;'>
             <tr>
-              <th>根属性</th>
+              <th>分类</th>
               <td><%#= good_sku.select :sku_category, Sku.base.collect { |s| [s.name, s.id] }, {}, class: 'form-control', placeholder: '请输入属性名称', onchange: 'associationSku(event)' %></td>
               <th>价格</th>
               <td><%= good_sku.number_field :price, class: 'form-control', placeholder: '请输入对应价格' %></td>
@@ -195,7 +59,7 @@
             </tr>
 
             <tr>
-              <th>属性</th>
+              <th>单位</th>
               <td><%#= good_sku.select :id, Sku.normal.collect { |s| [s.name, s.id] }, {}, class: 'form-control good-sku-normal', placeholder: '请输入属性名称' %></td>
               <th>已售</th>
               <td><%= good_sku.number_field :sale_count, class: 'form-control', placeholder: '请输入已售' %></td>
@@ -208,13 +72,7 @@
       </div>
   </div>
 
-
-  <div class="form-group">
-    <%= form.label :detail_info, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.text_area :detail_info, rows: 40, id: 'wysihtml5-textarea', class: 'form-control', placeholder: '请输入详细信息' %>
-    </div>
-  </div>
+  <%= form.input :detail_info, as: :text, input_html: { rows: 40 } %>
 
   <div class="actions">
     <%= form.submit class: 'btn btn-block btn-info' %>
@@ -222,7 +80,7 @@
 <% end %>
 
 <script>
-$('#wysihtml5-textarea').wysihtml5({locale: 'zh-CN'});
+$('#good_detail_info').wysihtml5({locale: 'zh-CN'});
 
 // 商品属性级联操作
 function associationSku(e){

@@ -1,7 +1,7 @@
 zh-CN:
   activerecord:
     models:
-      sku: 库存属性
+      sku: 库存单位
     attributes:
        sku:
         id: 编号
@@ -9,10 +9,10 @@ zh-CN:
         price: 价格
         defaulted: 默认选项
         sale_count: 已售
-        sku_name_ids: 库存属性 ID
-        sku_names: 库存属性名称
-        sku_val_ids: 库存属性值ID
-        sku_vals: 库存属性值
+        sku_name_ids: 库存单位 ID
+        sku_names: 库存单位名称
+        sku_val_ids: 库存单位值ID
+        sku_vals: 库存单位值
         stock_num: 库存
         stock_num_warn: 库存警戒
         created_at: 创建时间

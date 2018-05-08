@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180507113810) do
     t.string "name", null: false, comment: "类型名称"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["parent_id", "name"], name: "index_categories_on_parent_id_and_name", unique: true
     t.index ["parent_id"], name: "index_categories_on_parent_id"
   end
 
@@ -66,19 +67,19 @@ ActiveRecord::Schema.define(version: 20180507113810) do
   end
 
   create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "uid", default: "", comment: "商品条码"
-    t.string "name", default: "", comment: "商品名称"
-    t.string "title", default: "", comment: "广告标题"
-    t.string "code", default: "", comment: "产品编码"
-    t.string "brand_name", default: "", comment: "品牌名称"
-    t.string "logo", default: "", comment: "图标"
-    t.string "thum_logo", default: "", comment: "缩略图"
+    t.string "uid", comment: "商品条码"
+    t.string "name", comment: "商品名称"
+    t.string "title", comment: "广告标题"
+    t.string "code", comment: "产品编码"
+    t.string "brand_name", comment: "品牌名称"
+    t.string "logo", comment: "图标"
+    t.string "thum_logo", comment: "缩略图"
     t.integer "stock_num", default: 0, comment: "库存"
     t.integer "price", default: 0, comment: "(进货)价格"
     t.integer "market_price", default: 0, comment: "商城价"
     t.integer "whole_price", default: 0, comment: "分享价"
     t.integer "whole_num", default: 0, comment: "(享受分享价条件)分享次数"
-    t.string "share_tips", default: "0", comment: "分享提示"
+    t.string "share_tips", comment: "分享提示"
     t.integer "share_times", default: 0, comment: "分享次数"
     t.integer "share_amount", default: 0, comment: "总分享次数"
     t.integer "min_buy_num", default: 0, comment: "最少购买数量"
@@ -99,6 +100,8 @@ ActiveRecord::Schema.define(version: 20180507113810) do
     t.datetime "updated_at", null: false
     t.index ["adverts_id"], name: "index_goods_on_adverts_id"
     t.index ["business_id"], name: "index_goods_on_business_id"
+    t.index ["code"], name: "index_goods_on_code", unique: true
+    t.index ["name"], name: "index_goods_on_name", unique: true
     t.index ["uid"], name: "index_goods_on_uid", unique: true
   end
 

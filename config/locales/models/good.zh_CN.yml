@@ -19,17 +19,17 @@ zh-CN:
         title: 推荐标题
         price: 价格
         sale_count: 已售
-        share_amount: 分享合计
-        share_times: 分享次数
+        share_amount: 已分享合计
+        share_times: 已分享次数
         share_tips: 分享提示
         source_flag: 'Source Flag'
         start_time: 活动开始时间
         status: 状态
         stock_num: 库存
-        thum_logo: 大图标
+        thum_logo: 缩略图
         valid_end_time: 活动截止时间
         whole_num: 分享价次数
-        whole_price: 折扣价
+        whole_price: 分享价
         discover: 发现好商品
         recommend: 推荐商品
         created_at: 创建时间

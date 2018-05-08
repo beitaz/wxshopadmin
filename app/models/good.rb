@@ -4,8 +4,8 @@
 #
 #  id                       :bigint(8)        not null, primary key
 #  uid(商品条码)                :string(255)      default("")
-#  name(商品名称)               :string(255)      default("")
-#  title(广告标题)              :string(255)      default("")
+#  name(商品名称)               :string(255)
+#  title(广告标题)              :string(255)
 #  code(产品编码)               :string(255)      default("")
 #  brand_name(品牌名称)         :string(255)      default("")
 #  logo(图标)                 :string(255)      default("")
@@ -39,6 +39,8 @@
 #
 #  index_goods_on_adverts_id   (adverts_id)
 #  index_goods_on_business_id  (business_id)
+#  index_goods_on_code         (code) UNIQUE
+#  index_goods_on_name         (name) UNIQUE
 #  index_goods_on_uid          (uid) UNIQUE
 #
 
@@ -53,5 +55,5 @@ class Good < ApplicationRecord
 
   scope :adverts, -> { where.not(adverts_id: nil) }
   scope :discovers, -> { where(discover: true) }
-  scope :recommends, -> { where(recommend: true) }
+  scope :recommends, -> { where.not(title: nil) }
 end

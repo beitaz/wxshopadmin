@@ -170,7 +170,7 @@ dl {
 }
 
 /** 重写 simple_form_boostrap 样式 **/
-.horizontal_form {
+.simple_form {
   .form-group {
     label.col-sm-3 {
       text-align: right;
@@ -189,10 +189,6 @@ dl {
         padding-right: 10px;
       }
     }
-  }
-}
-.simple_form {
-  .form-group {
     input[aria-invalid] {
       border-color: red;
     }

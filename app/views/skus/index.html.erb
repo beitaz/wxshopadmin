@@ -1,7 +1,7 @@
 <section class="content-header">
-  <h1>库存属性列表</h1>
+  <h1>库存单位列表</h1>
   <div class="tools">
-    <%= link_to "新建库存属性", new_sku_path, class: 'btn btn-sm btn-primary pull-right' %>
+    <%= link_to "新建库存单位", new_sku_path, class: 'btn btn-sm btn-primary pull-right' %>
   </div>
 </section>
 
@@ -20,6 +20,11 @@
       </tr>
     </thead>
     <tbody>
+    <% if @skus.empty? %>
+      <tr>
+        <td colspan='8'>暂无数据</td>
+      </tr>
+    <% else %>
       <% @skus.each do |sku| %>
       <tr>
         <td><%= sku.id %></td>
@@ -36,6 +41,7 @@
         </td>
       </tr>
       <% end %>
+    <% end %>
     </tbody>
   </table>
 </section>

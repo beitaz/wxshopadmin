@@ -16,8 +16,7 @@
 //= require bootstrap-wysihtml5
 // require bootstrap-wysihtml5/locales/zh-CN
 //= require bootstrap-wysihtml5.zh-CN
-//= require admin-lte/dist/js/adminlte
-//= require adminlte
+// require admin-lte/dist/js/adminlte 
 //= require jquery_nested_form
 //= require select2/dist/js/select2
 // require select2/dist/js/select2.full
