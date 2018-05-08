@@ -3,7 +3,7 @@ zh-CN:
     models:
       good: 商品
     attributes:
-       good:
+      good:
         id: 编号
         uid: 商品条码
         brand_name: 品牌
@@ -37,5 +37,9 @@ zh-CN:
         business: 所属公司
         photos: 图片
         skus: 库存属性
-        sku:
-          name: 属性名称
+      skus:
+        name: 属性
+        price: 库存价格
+        category_id: 库存属性
+        stock_num: 库存数量
+        stock_num_warn: 库存数量警戒

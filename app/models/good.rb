@@ -52,6 +52,7 @@ class Good < ApplicationRecord
   belongs_to :advert, optional: true
   has_many :skus
   accepts_nested_attributes_for :skus, allow_destroy: true
+  validates :name, presence: true, uniqueness: true
 
   scope :adverts, -> { where.not(adverts_id: nil) }
   scope :discovers, -> { where(discover: true) }

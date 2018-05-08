@@ -142,9 +142,12 @@ ActiveRecord::Schema.define(version: 20180507113810) do
     t.integer "sale_count", default: 0, comment: "已售"
     t.integer "stock_num", default: 0, comment: "库存"
     t.integer "stock_num_warn", default: 0, comment: "库存警戒"
+    t.bigint "category_id", comment: "所属类型"
     t.bigint "good_id", comment: "商品"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id", "good_id"], name: "index_skus_on_category_id_and_good_id", unique: true
+    t.index ["category_id"], name: "index_skus_on_category_id"
     t.index ["good_id"], name: "index_skus_on_good_id"
     t.index ["name"], name: "index_skus_on_name"
   end

@@ -12,9 +12,12 @@ class CreateSkus < ActiveRecord::Migration[5.1]
       t.integer :stock_num, default: 0, comment: '库存'
       t.integer :stock_num_warn, default: 0, comment: '库存警戒'
       
+      t.belongs_to :category, index: true, comment: '所属类型'
       t.belongs_to :good, index: true, comment: '商品'
 
       t.timestamps
     end
+
+    add_index :skus, [:category_id, :good_id], unique: true
   end
 end

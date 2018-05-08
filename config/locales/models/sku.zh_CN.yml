@@ -15,5 +15,4 @@ zh-CN:
         sku_vals: 库存单位值
         stock_num: 库存
         stock_num_warn: 库存警戒
-        created_at: 创建时间
-        updated_at: 修改时间
+        category: 类型

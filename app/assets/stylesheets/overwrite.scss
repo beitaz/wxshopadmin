@@ -156,6 +156,13 @@ dl {
   padding-right: 15px;
 }
 
+form {
+  select.form-control {
+    border-radius: 0px;
+    -webkit-appearance: none;
+  }
+}
+
 /** 重写 boostrap modal 样式 **/
 
 .modal .modal-dialog {
@@ -172,10 +179,12 @@ dl {
 /** 重写 simple_form_boostrap 样式 **/
 .simple_form {
   .form-group {
-    label.col-sm-3 {
+    label.col-form-label {
       text-align: right;
-      abbr[title] {
-        color: red;
+      padding-left: 5px;
+      padding-right: 5px;
+      &.required, abbr[title] {
+        color: #DD4A39;;
         border-bottom: unset;
         text-decoration: unset;
       }

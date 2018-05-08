@@ -55,7 +55,7 @@ class GoodsController < ApplicationController
     skip_authorization
     respond_to do |format|
       if @good.update(good_params)
-        format.html { redirect_to :goods, notice: "编号为 '#{@good.code}' 的商品已更新." }
+        format.html { redirect_to edit_good_path(@good), notice: "编号为 '#{@good.code}' 的商品已更新." }
         format.json { render :show, status: :ok, location: @good }
       else
         format.html { render :edit }
@@ -88,7 +88,7 @@ class GoodsController < ApplicationController
                                    :share_times, :share_amount, :min_buy_num, :free_ship_num, :freight,
                                    :sale_count, :source_flag, :evaluate_count, :start_time, :valid_end_time,
                                    :status, :detail_info, :discover, :recommend, :business_id, :adverts_id,
-                                   skus_attributes: [:id, :name, :defaulted, :price, :sale_count,
+                                   skus_attributes: [:id, :name, :defaulted, :price, :sale_count, :category_id,
                                                      :stock_num, :stock_num_warn, :_destroy])
     end
 end

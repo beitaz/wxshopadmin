@@ -21,4 +21,5 @@ class Category < ApplicationRecord
   # validates_presence_of :parent_id, unless: -> { base }, message: '必须选择'
 
   scope :base, -> { where(parent_id: 0) }
+  scope :normal, -> { where.not(parent_id: 0) }
 end

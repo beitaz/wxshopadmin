@@ -1,24 +1,24 @@
-<%= simple_nested_form_for(@good, url: @good.new_record? ? goods_path : good_path(@good), html: { class: 'form-horizontal' }) do |form| %>
-  <%# flash[:errors] = @good.errors.full_messages if @good.errors.any? %>
+<%= simple_nested_form_for(@good, url: @good.new_record? ? goods_path : good_path(@good), html: { class: 'form-horizontal horizontal_form' }) do |form| %>
+  <% flash[:errors] = @good.errors.full_messages if @good.errors.any? %>
 
   <%= form.input :uid, disabled: true %>
   <%= form.association :business, prompt: '请选择公司' %>
   <%= form.input :brand_name, disabled: true %>
   <%= form.input :name, required: true, placeholder: '请输入商品名称' %>
-  <%= form.input :code, placeholder: '请输入商品编码' %>
+  <%= form.input :code, required: true, placeholder: '请输入商品编码' %>
   <%= form.input :title, placeholder: '请输入推荐标题' %>
-  <%= form.input :logo, placeholder: '请输入商品图片' %>
-  <%= form.input :thum_logo, placeholder: '请输入商品缩略图' %>
-  <%= form.input :stock_num, as: :integer, placeholder: '请输入库存数量' %>
-  <%= form.input :price, as: :decimal, placeholder: '请输入价格' %>
-  <%= form.input :market_price, as: :decimal, placeholder: '请输入商城价' %>
+  <%= form.input :logo, required: true, placeholder: '请输入商品图片' %>
+  <%= form.input :thum_logo, required: true, placeholder: '请输入商品缩略图' %>
+  <%= form.input :stock_num, as: :integer, required: true, placeholder: '请输入库存数量' %>
+  <%= form.input :price, as: :decimal, required: true, placeholder: '请输入价格' %>
+  <%= form.input :market_price, as: :decimal, required: true, placeholder: '请输入商城价' %>
   <%= form.input :whole_price, as: :decimal, placeholder: '请输入分享价' %>
   <%= form.input :whole_num, as: :integer, placeholder: '请输入分享次数(即享受分享价的条件)' %>
   <%= form.input :share_tips, placeholder: '请输入分享提示' %>
   <%= form.input :share_times, as: :integer, placeholder: '请输入已分享次数' %>
   <%= form.input :share_amount, as: :integer, placeholder: '请输入已分享次数合计' %>
-  <%= form.input :min_buy_num, as: :integer, placeholder: '请输入最少购买数' %>
-  <%= form.input :freight, as: :decimal, placeholder: '请输入运费金额' %>
+  <%= form.input :min_buy_num, as: :integer, required: true, placeholder: '请输入最少购买数' %>
+  <%= form.input :freight, as: :decimal, required: true, placeholder: '请输入运费金额' %>
   <%= form.input :free_ship_num, as: :integer, placeholder: '请输入免运费件数' %>
   <%= form.input :sale_count, as: :integer, placeholder: '请输入已售件数合计' %>
   <%= form.input :source_flag, as: :integer, placeholder: '请输入 Source Flag(可能是推荐\首页广告\好商品的标记)' %>
@@ -26,11 +26,11 @@
   <%= form.input :status, as: :integer, placeholder: '请输入状态' %>
 
 
-
+<!--
   <% if @good.skus.present? %>
   <div class="form-group">
-    <%= form.label :skus, class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
+    <%= form.label :skus, class: 'col-sm-3 control-label' %>
+    <div class="col-sm-9">
       <dl class="dl-horizontal">
         <% @good.skus.each do |gs| %>
         <dt><%= gs.name %></dt>
@@ -40,35 +40,30 @@
     </div>
   </div>
   <% end %>
-
+-->
   <div class="form-group good-skus">
-      <label class="col-sm-2 control-label">
-        <%= form.link_to_add '添加库存单位', :skus, data: { target: '#goodSkus' }, class: 'btn btn-xs btn-info pull-right skus-btn' %>
+      <label class="col-sm-3 control-label">
+        <%= form.link_to_add '添加库存属性', :skus, data: { target: '#goodSkus' }, class: 'btn btn-xs btn-info pull-right skus-btn' %>
       </label>
-      <div class="col-sm-10" id="goodSkus">
+      <div class="col-sm-9">
+        <table id="goodSkus">
+          <tr>
+            <th>属性</th>
+            <th>价格</th>
+            <th>库存</th>
+            <th>警戒</th>
+            <th>操作</th>
+          </tr>
         <%= form.fields_for :skus, wrapper: false do |good_sku| %>
-          <table class='fields' style='width: 100%;'>
-            <tr>
-              <th>分类</th>
-              <td><%#= good_sku.select :sku_category, Sku.base.collect { |s| [s.name, s.id] }, {}, class: 'form-control', placeholder: '请输入属性名称', onchange: 'associationSku(event)' %></td>
-              <th>价格</th>
-              <td><%= good_sku.number_field :price, class: 'form-control', placeholder: '请输入对应价格' %></td>
-              <th>库存</th>
-              <td><%= good_sku.number_field :stock_num, class: 'form-control',  placeholder: '请输入库存量' %></td>
-              <th rowspan='2'><%= good_sku.link_to_remove '删除', class: 'btn btn-info' %></th>
-            </tr>
-
-            <tr>
-              <th>单位</th>
-              <td><%#= good_sku.select :id, Sku.normal.collect { |s| [s.name, s.id] }, {}, class: 'form-control good-sku-normal', placeholder: '请输入属性名称' %></td>
-              <th>已售</th>
-              <td><%= good_sku.number_field :sale_count, class: 'form-control', placeholder: '请输入已售' %></td>
-              <th>警戒</th>
-              <td><%= good_sku.number_field :stock_num_warn, class: 'form-control', placeholder: '请输入库存警戒' %></td>
-            </tr>
-          </table>
-          
+          <tr class='fields'>
+            <td><%= good_sku.select :category_id, Category.normal.map { |c| [c.name, c.id]}, {} %></tda>
+            <td><%= good_sku.number_field :price %></td>
+            <td><%= good_sku.number_field :stock_num, min: 0 %></td>
+            <td><%= good_sku.number_field :stock_num_warn, min: 0 %></td>
+            <td><%= good_sku.link_to_remove '删除', class: 'btn btn-xs btn-info' %></td>
+          </tr>
         <% end %>
+        </table>
       </div>
   </div>
 
